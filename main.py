@@ -86,18 +86,19 @@ class Reviewer(Mentor):
 
 
 # Примеры использования
-# Здесь мы определим студента, лектора и ревьювера
+# Здесь мы определим студента, лектора и эксперта
 if __name__ == "__main__":
     best_student = Student('Руслан', 'Петухов', 'Мужской')
     some_lecturer = Lecturer('Сергей', 'Семёнович')
     some_reviewer = Reviewer('Александр', 'Александрович')
-# Наш "лучший" (определим его в начале) студент закончил курс введение в программирование
+
+# Наш первый студент закончил курс введение в программирование
     best_student.finished_courses.append('Введение в программирование')
 # А так же курсы в процессе изучения "Python и Git"
     best_student.courses_in_progress.extend(['Python', 'Git'])
 # Лектор ведет эти курсы
     some_lecturer.courses_attached.extend(['Python', 'Git'])
-# Ревьювер проверяющий задания по этим курсам
+# Эксперт проверяющий задания по этим курсам
     some_reviewer.courses_attached.extend(['Python', 'Git'])
 
     # Студенческие оценки за ДЗ
@@ -108,6 +109,11 @@ if __name__ == "__main__":
     # Оценивание лектора
     best_student.rate_lecture(some_lecturer, 'Python', 9)
     best_student.rate_lecture(some_lecturer, 'Git', 8)
+
+    # Создадим второго лектора
+    second_lecturer = Lecturer('Павел', 'Дмитриевич')
+    second_lecturer.courses_attached.append('Python')
+    best_student.rate_lecture(second_lecturer, 'Python', 10)
 
     # Добавим второго студента
     another_student = Student('Антон', 'Ковалёв', 'Мужской')
@@ -120,22 +126,21 @@ if __name__ == "__main__":
     some_reviewer.rate_hw(another_student, 'Python', 6)
     some_reviewer.rate_hw(another_student, 'Git', 8)
 
-    # Сравнение студентов и лекторов
-    print("\nСтудент1:")
+    # Проверяем действующие лица
+    print("\nСтудент_1:")
     print(best_student)
-    print("\nСтудент2:")
+    print("\nСтудент_2:")
     print(another_student)
 
-    print("\nПреподаватель:")
+    print("\nЛектор_1:")
     print(some_lecturer)
+    print("\nЛектор_2:")
+    print(second_lecturer)
 
     print("\nЭксперт:")
     print(some_reviewer)
 
-    print(f'\nЛучший студент лучше другого студента? {"Да" if best_student > another_student else "Нет"}')
 
-    second_lecturer = Lecturer('Павел', 'Дмитриевич')
-    second_lecturer.courses_attached.append('Python')
-    best_student.rate_lecture(second_lecturer, 'Python', 10)
-
-    print(f'\nПервый лектор хуже второго? {"Да" if some_lecturer < second_lecturer else "Нет"}')
+    # Сравниваем, выводим результат
+    print(f'\n{best_student.name} лучше учится чем {another_student.name}? {"Да" if best_student > another_student else "Нет"}')
+    print(f'\n{some_lecturer.name} хуже преподает чем {second_lecturer.name}? {"Да" if some_lecturer < second_lecturer else "Нет"}')
