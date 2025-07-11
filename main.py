@@ -144,3 +144,15 @@ if __name__ == "__main__":
     # Сравниваем, выводим результат
     print(f'\n{best_student.name} лучше учится чем {another_student.name}? {"Да" if best_student > another_student else "Нет"}')
     print(f'\n{some_lecturer.name} хуже преподает чем {second_lecturer.name}? {"Да" if some_lecturer < second_lecturer else "Нет"}')
+
+    # Проверяем работоспособность реализации наследования
+    lecturer = Lecturer('Иван', 'Иванов')  # Лектор
+    reviewer = Reviewer('Пётр', 'Петров')  # Эксперт-рецензент
+
+    # Печатаем проверку наследования
+    print(isinstance(lecturer, Mentor))  # Должно вывести True
+    print(isinstance(reviewer, Mentor))  # Должно вывести True
+
+    # Проверяем поля courses_attached
+    print(lecturer.courses_attached)  # Должно вывести пустой список []
+    print(reviewer.courses_attached)  # Должно вывести пустой список []
